@@ -17,7 +17,7 @@ def get_db():
         db.close()
 
 
-@app.post("/answers/", tags=["application"])
+@app.post("/answers/", tags=["application"], deprecated=True)
 def create_answer(answer: schemas.AnswerCreate):
     return None
 
@@ -25,13 +25,15 @@ def create_answer(answer: schemas.AnswerCreate):
 # Questions endpoints
 # ========================
 
-@app.post("/questions/", tags=["application"])
-def create_question(question: schemas.QuestionCreate):
-    return None
+@app.post("/users/{user_id}/questions/", tags=["application"], response_model=schemas.Question)
+def create_question_for_user(user_id: int, question: schemas.QuestionCreate, db: Session = Depends(get_db)):
+    return crud.create_question(db=db, question=question, user_id=user_id)
 
-@app.get("/questions/", tags=["application"], response_model=schemas.Question)
-def read_questions(q: Optional[str] = None):
-    return None
+@app.get("/users/{user_id}/questions/", tags=["application"], response_model=List[schemas.Question])
+def read_questions(user_id: int, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    # TODO: return question only for user_id
+    db_questions = crud.get_questions(db=db, skip=skip, limit=limit)
+    return db_questions
 
 # ========================
 # User endpoints

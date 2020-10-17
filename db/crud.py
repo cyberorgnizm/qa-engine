@@ -44,6 +44,7 @@ def get_questions(db: Session, skip: int = 0, limit: int = 100):
 
 def create_question(db: Session, question: QuestionCreate, user_id: int):
     """An ORM query to create a new `Question`"""
+    print(question)
     db_question = Question(**question.dict(), owner_id=user_id)
     db.add(db_question)
     db.commit()

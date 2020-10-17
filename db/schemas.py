@@ -13,7 +13,7 @@ class Question(QuestionBase):
         orm_mode = True
 
 class QuestionCreate(QuestionBase):
-    owner: int
+    pass
 
 
 class AnswerBase(BaseModel):

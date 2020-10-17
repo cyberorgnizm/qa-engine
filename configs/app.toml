@@ -1,0 +1,4 @@
+name = "QA-Config file"
+
+[database]
+DATABASE_URL = "sqlite:///./engine.db"

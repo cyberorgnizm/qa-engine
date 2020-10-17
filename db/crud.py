@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
-from .questions import Question, Answer
-from .users import User
+from .models import Question, Answer, User
 from .schemas import UserCreate, QuestionCreate
 
 

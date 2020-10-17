@@ -7,7 +7,7 @@ class QuestionBase(BaseModel):
 
 class Question(QuestionBase):
     id: int
-    owner: int
+    owner_id: int
 
     class Config:
         orm_mode = True
@@ -51,7 +51,8 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool
-    contribution: Contribution
+    # contribution: Optional[Contribution]
+    questions: Optional[List[Question]]
 
     class Config:
         orm_mode = True

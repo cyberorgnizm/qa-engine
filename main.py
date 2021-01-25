@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+import uvicorn
 from typing import Optional, List
 from db import crud, models, database, schemas
 
